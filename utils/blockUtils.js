@@ -165,7 +165,7 @@ const storeGlobalBlock = async (block) => {
 
 const getLastBlock = () => {
 
-  return _globalBlockList.length > 0 ? _globalBlockList[0] : {}
+  return _globalBlockList.length > 0 ? _globalBlockList[0] : { receivedBlockTime: new Date() }
 }
 
 const getLastBlockHeights = (limit, nodeBlocks) => {
