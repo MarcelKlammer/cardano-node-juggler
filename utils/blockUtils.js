@@ -83,7 +83,7 @@ const calculateScoreFromBlocks = (cnjNode) => {
     // The latest block is shared amongst all local cluster nodes.
     // If you turn off layer 4, then this might have an effect.
 
-    score             -= diffHeight * 5
+    score             -= diffHeight // removed: * 5   Let's give a node more time get ok again.
 
     if(diffHeight === 0) {
 
