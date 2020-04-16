@@ -5,8 +5,8 @@ node_modules
 /blocks/blocks-*
 /configs/nodeconfig_*
 /jormungandr-logs/log-*
-/jormungandr-storage/**/*
-/poolsecret/**/*
+/jormungandr-storage/*/**/*
+/poolsecret/poolsecret*
 /stats/stats-*
 /cnj.config.json
 
