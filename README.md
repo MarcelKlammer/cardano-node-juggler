@@ -45,3 +45,11 @@ node cnj.js
 
 Make sure your ports (eg. 3000 to 3200) are available to the internet and mapped to your machine.\
 If you have a static IP, use the nodeconfig.template.publicip.json instead of nodeconfig.template.json.
+
+Also: macOS will prevent jcli and jormungandr from running when you start the app for the first time.
+
+Open Settings > Security and allow jcli and jormungandr. You will need to restart
+
+node cnj.js
+
+several times until you clicked allow for both enough times that even macOS will notice that you want to run those apps.
