@@ -7,9 +7,21 @@ let _lastLeader                       = null
 
 const chooseLeaderBasedOnScore = async (nodeConfigList) => {
 
-  let bestNode = _lastLeader
+  let bestNode        = _lastLeader
+  let numLeaderNodes  = 0
 
-  if(bestNode && bestNode.isLeader && isNodeRunning(bestNode) && bestNode.score === 100) {
+  for(let i = 0; i < nodeConfigList.length; i++) {
+
+    const nodeConfig = nodeConfigList[i]
+    const cnjNode = nodeConfig.cnj
+
+    if(cnjNode.isLeader) {
+
+      numLeaderNodes++
+    }
+  }
+
+  if(numLeaderNodes === 1 && bestNode && bestNode.isLeader && isNodeRunning(bestNode) && bestNode.score === 100) {
 
     // Leader is at max score. No need to change.
 
