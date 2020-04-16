@@ -389,11 +389,7 @@ const cnjMainLoop = async (nodeConfigList) => {
 
   if(_eposhStartTime && _currentTime) {
 
-    console.log('epoch switch at:', _eposhStartTime, _currentTime)
-    console.log('epoch switch at:', _eposhStartTime.getTime(), _currentTime.getTime())
-    console.log('epoch switch at:', _formatTime(_eposhStartTime),  getTimeDifferenceInSeconds(_eposhStartTime, _currentTime))
-    console.log('epoch switch at:', _formatTime(_eposhStartTime), _formatTime(_currentTime))
-
+    console.log('epoch switch at:', _formatTime(_eposhStartTime), _formatTime(_currentTime),  getTimeDifferenceInSeconds(_eposhStartTime, _currentTime))
   }
 
   _cnjMainLoopId = setTimeout(cnjMainLoop, 500, nodeConfigList)
