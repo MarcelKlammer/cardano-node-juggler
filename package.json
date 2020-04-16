@@ -1,0 +1,31 @@
+{
+  "name": "cardano-node-juggler",
+  "version": "0.1.0",
+  "description": "A local nodejs setup for a Cardano Staking Pool on macOS",
+  "productName": "Cardano Node Juggler",
+  "main": "cnj.js",
+  "scripts": {
+    "cnj": "node ./cnj.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "colors": "^1.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcelKlammer/cardano-node-juggler.git"
+  },
+  "keywords": [
+    "cardano",
+    "ADA",
+    "staking",
+    "pool",
+    "nodejs"
+  ],
+  "author": "Marcel Klammer, 2020",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcelKlammer/cardano-node-juggler/issues"
+  },
+  "homepage": "https://github.com/MarcelKlammer/cardano-node-juggler#readme"
+}
