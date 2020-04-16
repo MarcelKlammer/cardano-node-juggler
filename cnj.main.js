@@ -41,8 +41,8 @@ const { sendTipToPoolTool }           = require('./utils/pooltoolUtils.js')
 const { getTimeDifferenceInSeconds }  = require('./utils/timerUtils.js')
 
 let _settings                         = null
-let _currentTime                      = -1
-let _eposhStartTime                   = -1
+let _currentTime                      = null
+let _eposhStartTime                   = null
 
 const pullNodeStats = async (nodeConfigList) => {
 
@@ -72,6 +72,8 @@ const setNodeStates = async (nodeConfigList, jcliResults) => {
     if(isJcliFailing(jcliState)) {
 
       if(isNodeStarting(cnjNode)) {
+
+        console.log('start time', getNodeStartingTime(cnjNode))
 
         if(getNodeStartingTime(cnjNode) > 240.0) {
 
@@ -343,9 +345,9 @@ const prepareCardanoNodeConfigs = (config, nodeConfigTemplate) => {
 
 const isInEpochChangeRange = () => {
 
-  if(_eposhStartTime >= 0) {
+  if(_eposhStartTime !== null && _currentTime !== null) {
 
-    const diffTime = getTimeDifferenceInSeconds(_currentTime, _eposhStartTime)
+    const diffTime = getTimeDifferenceInSeconds(_eposhStartTime, _currentTime)
 
     return Math.abs(diffTime) < 120 // Set all nodes to be leader for 2 minutes before and after the epoch change.
   }
@@ -384,7 +386,15 @@ const cnjMainLoop = async (nodeConfigList) => {
   printNodes(nodeConfigList)
 
   console.log('')
-  console.log('epoch switch at:', _formatTime(_eposhStartTime),  getTimeDifferenceInSeconds(_currentTime, _eposhStartTime))
+
+  if(_eposhStartTime && _currentTime) {
+
+    console.log('epoch switch at:', _eposhStartTime, _currentTime)
+    console.log('epoch switch at:', _eposhStartTime.getTime(), _currentTime.getTime())
+    console.log('epoch switch at:', _formatTime(_eposhStartTime),  getTimeDifferenceInSeconds(_eposhStartTime, _currentTime))
+    console.log('epoch switch at:', _formatTime(_eposhStartTime), _formatTime(_currentTime))
+
+  }
 
   _cnjMainLoopId = setTimeout(cnjMainLoop, 500, nodeConfigList)
 }

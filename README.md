@@ -53,3 +53,18 @@ Open Settings > Security and allow jcli and jormungandr. You will need to restar
 node cnj.js
 
 several times until you clicked allow for both enough times that even macOS will notice that you want to run those apps.
+
+Also, if you are running the app for the first time, you can put a local copy of
+
+blocks.sqlite
+blocks.sqlite-shm
+blocks.sqlite-wal
+
+into
+
+jormungandr-storage/0
+jormungandr-storage/1
+jormungandr-storage/2
+jormungandr-storage/3
+
+etc. to speed up the first startup.

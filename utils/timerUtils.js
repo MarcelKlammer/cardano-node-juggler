@@ -23,7 +23,12 @@ const sleep = (ms) => {
 
 const getTimeDifferenceInSeconds = (first, second) => {
 
-  return (first ? first.getTime() : 0 - second ? second.getTime() : 0) / 1000
+  if(!first || !second) {
+
+    return 0
+  }
+
+  return (first.getTime() - second.getTime()) / 1000
 }
 
 module.exports = { timerStart, timerEnd, sleep, getTimeDifferenceInSeconds }
