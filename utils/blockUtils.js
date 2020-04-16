@@ -111,10 +111,10 @@ const reduceScoreByTimeSinceLastBlock = (nodeBlocks, currentTime) => {
 
   if(nodeBlocks.length > 0) {
 
-    // Give it 120 seconds since last block received until the score will reduce 1 point for every additional second.
+    // Give it 540 seconds since last block received until the score will reduce 1 point for every additional second.
 
     diffScore   = Math.floor((currentTime.getTime() - nodeBlocks[0].receivedBlockTime.getTime()) / 1000) // seconds
-    diffScore   = Math.max(diffScore - 120, 0)
+    diffScore   = Math.max(diffScore - 540, 0)
   }
 
   return diffScore

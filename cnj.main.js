@@ -134,7 +134,6 @@ const setNodeStates = async (nodeConfigList, jcliResults) => {
 
           _settings = await getNodeSettings(nodeConfig)
 
-
           if(_settings && _settings.block0Time) {
 
             _settings.block0Time = new Date(_settings.block0Time)
@@ -184,6 +183,8 @@ const printNodes = (nodeConfigList) => {
     const nodeBlockHeights    = getLastBlockHeights(200, nodeBlocks)
 
     let blocks = ''
+
+    // TODO: Add a cluster line, that doesn't rely on globalBlockHeights, but on the actual last 30 block heights.
 
     for(let i = 0; i < globalBlockHeights.length; i++) {
 
