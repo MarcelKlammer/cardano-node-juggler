@@ -172,7 +172,7 @@ const promoteLeader = async (nodeConfig) => {
 
   let leaderIds = await jcliGetLeaders(nodeConfig.rest.listen)
 
-  if(leaderIds.length === 0) {
+  if(leaderIds.length === 0 && nodeConfig.cnj.poolsecret_yaml) {
 
     console.log('promoteLeader', nodeConfig.cnj.name)
 
