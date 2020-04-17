@@ -2,7 +2,7 @@
   "log": [
   {
     "format": "plain",
-    "level": "debug",
+    "level": "info",
     "output": { "file": "./jormungandr-logs/log-###node-index###.txt" }
   }
   ],
@@ -36,7 +36,7 @@
     },
 
     "policy": {
-      "quarantine_duration": "5min",
+      "quarantine_duration": "1min",
       "quarantine_whitelist": []
     },
 
