@@ -13,6 +13,8 @@ node_modules
 /jcli
 /jormungandr
 
+test*.json
+
 # Log files
 npm-debug.log*
 yarn-debug.log*
