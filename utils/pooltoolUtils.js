@@ -47,6 +47,11 @@ const queuePoolToolCall = async () => {
 
 const sendTipToPoolTool = async (nodeConfig, cnjNode, block) => {
 
+  if(!cnjNode.pooltool_user_id || ! cnjNode.pool_id) {
+
+    return
+  }
+
   const pulledBlock     = await getBlock(nodeConfig, block.blockHash)
 
   _currentURL = 'https://api.pooltool.io/v0/sharemytip?' +
