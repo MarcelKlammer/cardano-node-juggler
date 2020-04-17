@@ -378,6 +378,7 @@ const cnjMainLoop = async (nodeConfigList) => {
     chooseLeaderBasedOnScore(nodeConfigList)
   }
 
+  // TODO: check async behavior. Some jcli commands may take longer and should be awaited before setting a new timeout.
   // TODO: Put print stuff in own utils file
   // TODO: Utilize the terminal size to show block history without line wrap.
   // console.log('Terminal size: ' + process.stdout.columns + 'x' + process.stdout.rows);
@@ -386,6 +387,9 @@ const cnjMainLoop = async (nodeConfigList) => {
   // Every delay in receivedBlockTime is counting and in the beginning its just not correct.
 
   // TODO: Detailed score object!!
+
+  // TODO: Also: be more forgiving when it comes to missed blocks, nodes should sort themselfes out on their own.
+  // TODO: Look into not restarting, but reporting to email or sms when a node does not receive blocks anymore. (more supervision by operator)
 
   console.clear()
   console.log('### cardano-node-juggler: v' + version + ' ###')
