@@ -378,6 +378,9 @@ const cnjMainLoop = async (nodeConfigList) => {
     chooseLeaderBasedOnScore(nodeConfigList)
   }
 
+  // TODO: If no node is running, start them all with a bit delay and wait for the settings to be available ( _eposhStartTime )
+  // TODO: Only then do health monitoring
+
   // TODO: check async behavior. Some jcli commands may take longer and should be awaited before setting a new timeout.
   // TODO: Put print stuff in own utils file
   // TODO: Utilize the terminal size to show block history without line wrap.
