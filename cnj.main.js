@@ -378,6 +378,15 @@ const cnjMainLoop = async (nodeConfigList) => {
     chooseLeaderBasedOnScore(nodeConfigList)
   }
 
+  // TODO: Put print stuff in own utils file
+  // TODO: Utilize the terminal size to show block history without line wrap.
+  // console.log('Terminal size: ' + process.stdout.columns + 'x' + process.stdout.rows);
+
+  // TODO: score should be only calculated for the time the node is running not starting.
+  // Every delay in receivedBlockTime is counting and in the beginning its just not correct.
+
+  // TODO: Detailed score object!!
+
   console.clear()
   console.log('### cardano-node-juggler: v' + version + ' ###')
   console.log('')
@@ -387,6 +396,8 @@ const cnjMainLoop = async (nodeConfigList) => {
   printNodes(nodeConfigList)
 
   console.log('')
+
+  // TODO: print latest pooltool.io block height
 
   if(_eposhStartTime && _currentTime) {
 
@@ -398,10 +409,8 @@ const cnjMainLoop = async (nodeConfigList) => {
 
 const _formatTime = (date) => {
 
-  const options = {
-    // year: 'numeric', month:  'numeric', day:    'numeric',
-    hour: 'numeric', minute: 'numeric', second: 'numeric',
-    hour12: false, timeZone: 'UTC'
+  const options = { timeZone: 'UTC', hour12: false,
+    hour: 'numeric', minute: 'numeric', second: 'numeric', // year: 'numeric', month: 'numeric', day: 'numeric',
   };
 
   return new Intl.DateTimeFormat('en-US', options).format(date)
