@@ -1,6 +1,6 @@
 {
   "name": "cardano-node-juggler",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A local nodejs setup for a Cardano Staking Pool on macOS",
   "productName": "Cardano Node Juggler",
   "main": "cnj.js",
