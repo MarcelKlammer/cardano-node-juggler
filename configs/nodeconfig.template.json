@@ -2,7 +2,7 @@
   "log": [
   {
     "format": "plain",
-    "level": "debug",
+    "level": "info",
     "output": { "file": "./jormungandr-logs/log-###node-index###.txt" }
   }
   ],
@@ -21,7 +21,6 @@
       }
     },
     "listen_address": "/ip4/###ip-listen###/tcp/###port-listen######node-index###",
-    "public_address": "/ip4/###ip-public###/tcp/###port-listen######node-index###",
     "public_id": "###id-public######node-index###",
 
     "max_connections": "###max-connections###",
