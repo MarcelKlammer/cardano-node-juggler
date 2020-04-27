@@ -1,10 +1,12 @@
 {
   "genesis_block": "8e4d2a343f3dcf9330ad9035b3e8d168e6728904262f2c434a4f8f934ec7b676",
   "poolsecret_yaml": "./poolsecret/poolsecret.yaml",
+  "poolsecret_json": "./poolsecret/poolsecret.json",
 
   "num_nodes": 2,
   "use_preferred_list":   true,
   "add_to_trusted_peers": true,
+  "epoch_transition_range": [ -90.0, 30.0 ],
 
   "name_prefix": "local-node-",
   "ip_public": "0.0.0.0",
@@ -15,9 +17,6 @@
   "id_public": "00000000000000000000000000000000000000000000000",
 
   "max_connections": 2048,
-  "max_inbound_connections": 1792,
-  "gossip_interval": "4s",
-
-  "pool_id": "0000000000000000000000000000000000000000000000000000000000000000",
-  "pooltool_user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  "max_inbound_connections": 1024,
+  "gossip_interval": "2s"
 }
