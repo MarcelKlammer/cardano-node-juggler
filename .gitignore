@@ -9,6 +9,7 @@ node_modules
 /poolsecret/poolsecret*
 /stats/stats-*
 /cnj.config.json
+/pooltool.config.json
 
 /jcli
 /jormungandr
