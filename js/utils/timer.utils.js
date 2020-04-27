@@ -16,19 +16,13 @@ const timerEnd = () => {
     timeDiff:   parseFloat(_timeEnd - _timeStart) / 1000000}
 }
 
-const sleep = (ms) => {
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
-  return new Promise(resolve => setTimeout(resolve, ms));
+const getDuration = (firstDate, secondDate) => {
+
+  if(!firstDate || !secondDate) { return 0 }
+
+  return (firstDate.getTime() - secondDate.getTime()) / 1000
 }
 
-const getTimeDifferenceInSeconds = (first, second) => {
-
-  if(!first || !second) {
-
-    return 0
-  }
-
-  return (first.getTime() - second.getTime()) / 1000
-}
-
-module.exports = { timerStart, timerEnd, sleep, getTimeDifferenceInSeconds }
+module.exports = { timerStart, timerEnd, sleep, getDuration }

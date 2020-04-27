@@ -1,0 +1,9 @@
+{
+  "pool_id":  "0000000000000000000000000000000000000000000000000000000000000000",
+  "user_id":  "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+
+  "sharetip": "https://api.pooltool.io/v0/sharemytip",
+
+  "stats":    "https://pooltool.s3-us-west-2.amazonaws.com/stats/stats.json",
+  "heights":  "https://pooltool.s3-us-west-2.amazonaws.com/stats/heights.json"
+}

@@ -1,18 +1,18 @@
 const fs                              = require('fs')
 const { spawn }                       = require('child_process')
 
-function jorStartNode(cnjNode) {
+function jormungandrStartNode(cnjNode) {
 
   const out = fs.openSync('./jormungandr-logs/log-' + cnjNode.index + '-process-stdout.txt', 'a')
   const err = fs.openSync('./jormungandr-logs/log-' + cnjNode.index + '-process-stderr.txt', 'a')
 
   let params =
-    '--genesis-block-hash ' + cnjNode.genesis_block +
+    '--genesis-block-hash ' + cnjNode.genesisBlock +
     ' --config ./configs/nodeconfig_' + cnjNode.index + '.yaml'
 
-  if(cnjNode.poolsecret_yaml) {
+  if(cnjNode.poolsecretYaml) {
 
-    params += ' --secret ' + cnjNode.poolsecret_yaml
+    params += ' --secret ' + cnjNode.poolsecretYaml
   }
 
   const jormungandr = spawn('./jormungandr-start.sh', [ params ], {
@@ -23,4 +23,4 @@ function jorStartNode(cnjNode) {
   jormungandr.unref()
 }
 
-module.exports = { jorStartNode }
+module.exports = { jormungandrStartNode }

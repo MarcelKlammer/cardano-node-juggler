@@ -10,6 +10,8 @@ node_modules
 /stats/stats-*
 /cnj.config.json
 /pooltool.config.json
+/pooltool/heights.json
+/pooltool/stats.json
 
 /jcli
 /jormungandr

@@ -1,7 +1,13 @@
-const { cnjMainLoop }                 = require('./cnj.main.js')
-const { prepareCardanoNodeConfigs }   = require('./cnj.main.js')
+const { prepareNodeConfigs }          = require('./js/utils/node.config.utils.js')
+const { prepareCNJNodes }             = require('./js/CNJNode')
 
-cnjMainLoop(
-  prepareCardanoNodeConfigs(
-    require('./cnj.config.json'),
-    require('./configs/nodeconfig.template.json')))
+const { cnjMainLoop }                 = require('./cnj.main.js')
+
+const cnjConfig                       = require('./cnj.config.json')
+
+prepareNodeConfigs(cnjConfig, require('./configs/nodeconfig.template.json'))
+prepareCNJNodes(cnjConfig)
+
+cnjMainLoop().catch(error => console.error(error))
+
+
