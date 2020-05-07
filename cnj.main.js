@@ -11,8 +11,8 @@ const { chooseAllCNJNodeLeaders }     = require('./js/utils/leader.utils.js')
 
 const { printScreen }                 = require('./js/utils/print.utils.js')
 
-const { timerStart }                 = require('./js/utils/timer.utils.js')
-const { timerEnd }                   = require('./js/utils/timer.utils.js')
+const { timerStart }                  = require('./js/utils/timer.utils.js')
+const { timerEnd }                    = require('./js/utils/timer.utils.js')
 
 let _cnjMainLoopId                    = -1
 
