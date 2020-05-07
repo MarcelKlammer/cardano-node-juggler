@@ -74,7 +74,7 @@ const setCNJNodeStateByStats = (cnjNode) => {
 
     if(isCNJNodeStarting(cnjNode)) {
 
-      if(getCNJStateDuration(cnjNode) > 300.0) { setCNJNodeFailing(cnjNode) }
+      if(getCNJStateDuration(cnjNode) > 60.0) { setCNJNodeFailing(cnjNode) }
 
     } else {
 
