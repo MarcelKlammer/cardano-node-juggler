@@ -45,6 +45,11 @@ const promoteLeader = async (cnjNode) => {
 
   let leaders = await getLeaders(restURL)
 
+  if(leaders && leaders.data) {
+
+    console.log(cnjNode.nodeConfig.rest.listen, leaders.data)
+  }
+
   if(leaders && leaders.data.length === 0 && cnjNode.poolsecretJson) {
 
     console.log('promoteLeader', cnjNode.name)
