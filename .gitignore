@@ -15,6 +15,7 @@ node_modules
 
 /jcli
 /jormungandr
+/tmp.sh
 
 test*.json
 
