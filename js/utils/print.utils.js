@@ -10,6 +10,7 @@ const { isCNJNodeInEpochTransition }  = require('./node.utils.js')
 
 const { getLastSuccessfulResponse }   = require('./pooltool.utils.js')
 
+const { isCNJNodeFailing }            = require('../CNJNodeState.js')
 const { cnjNodeList }                 = require('../CNJNode.js')
 
 let _currentTime    = null
@@ -68,7 +69,7 @@ const printNodes = (numBlocks) => {
     let state         = assureLength(cnjNode.state,             8, false)
     let blockHeight   = assureLength(cnjNode.blockHeight + '',  9, true)
     let score         = assureLength(cnjNode.score.total + '',  3, true)
-    let leader        = cnjNode.isLeader ? ' LEADER! ' : ' PASSIVE '.black.bgWhite
+    let leader        = isCNJNodeFailing(cnjNode) ? '         '.black.bgBlack : (cnjNode.isLeader ? ' LEADER! ' : ' PASSIVE '.black.bgWhite)
     let blocks        = ''
 
          if(cnjNode.score < 50) { score = score.red }
