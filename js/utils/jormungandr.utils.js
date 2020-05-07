@@ -20,6 +20,18 @@ function jormungandrStartNode(cnjNode) {
     stdio: [ 'ignore', out, err ]
   });
 
+  // jormungandr.stdout.on('data', (data) => {
+  //   console.log(`stdout: ${data}`);
+  // });
+  //
+  // jormungandr.stderr.on('data', (data) => {
+  //   console.error(`stderr: ${data}`);
+  // });
+  //
+  // jormungandr.on('close', (code) => {
+  //   console.log(`child process exited with code ${code}`);
+  // });
+
   jormungandr.unref()
 }
 
