@@ -123,7 +123,7 @@ const updateAllCNJNodeScores = async () => {
         // // The total score will only ever go below 5 (restarting condition), if for 8 minutes no new block was retrieved.
         // // The other factors, eg. blocksMissed and blockDelays, will only determine the leader choice score.
         //
-        // const numLastBlocks               = 50
+        const numLastBlocks               = 10
         //
         // cnjNode.score.blocksMissed        = 0
         // cnjNode.score.blockDelays.length  = 0
