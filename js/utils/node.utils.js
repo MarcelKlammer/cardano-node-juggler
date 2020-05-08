@@ -21,11 +21,13 @@ const { createCNJBlock }              = require('../CNJBlock.js')
 
 const { cnjNodeList }                 = require('../CNJNode.js')
 
+let cardanoNodeStarting = false
+
 const updateAllCNJNodeStates = () => {
 
   for(let cnjNode of cnjNodeList) { setCNJNodeStateByStats(cnjNode) }
 
-  let cardanoNodeStarting = false
+  cardanoNodeStarting = false
 
   for(let cnjNode of cnjNodeList) {
 
@@ -162,7 +164,7 @@ const restartCNJNodeByScore = (force) => {
 
   for(let cnjNode of cnjNodeList) {
 
-    if(force || cnjNode.score.total < 5) {
+    if(!cardanoNodeStarting && (force || cnjNode.score.total < 5)) {
 
       setCNJNodeStarting(cnjNode)
       restartCardanoNode(cnjNode)
