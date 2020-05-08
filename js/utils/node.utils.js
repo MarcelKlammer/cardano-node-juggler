@@ -21,13 +21,11 @@ const { createCNJBlock }              = require('../CNJBlock.js')
 
 const { cnjNodeList }                 = require('../CNJNode.js')
 
-let cardanoNodeStarting = false
-
 const updateAllCNJNodeStates = () => {
 
   for(let cnjNode of cnjNodeList) { setCNJNodeStateByStats(cnjNode) }
 
-  cardanoNodeStarting = false
+  let cardanoNodeStarting = false
 
   for(let cnjNode of cnjNodeList) {
 
@@ -102,60 +100,50 @@ const updateAllCNJNodeScores = async () => {
 
       const blockList                     = cnjNode.receivedBlocks
 
-      // const maxPenaltyPerBlock            = 2
-      // const latestBlock                   = getLatestBlock()
+      const numLastBlocks                 = 10
+      const maxPenaltyPerBlock            = 5
 
-      if(blockHeightMax === 0 || blockList.length <= 5) {
+      if(blockHeightMax === 0 || blockList.length <= numLastBlocks / 2) {
 
         cnjNode.score.blocksMissed        = 0
         cnjNode.score.blockDelays.length  = 0
-        cnjNode.score.total               = 75
+        cnjNode.score.total               = 100 - (numLastBlocks / 2) * maxPenaltyPerBlock
 
       } else {
 
-        const lastNodeBlock               = blockList[0]
+        // The total score will only ever go below 5 (restarting condition), if for 8 minutes no new block was retrieved.
+        // The other factors, eg. blocksMissed and blockDelays, will only determine the leader choice score.
 
-        cnjNode.score.blocksMissed        = blockHeightMax - lastNodeBlock.blockHeight
+        cnjNode.score.blocksMissed        = 0
+        cnjNode.score.blockDelays.length  = 0
 
+        for(let i = 0, blockHeight = blockHeightMax; i < numLastBlocks; i++, blockHeight--) {
 
+          let foundBlockHeight = false
 
+          for(let k = 0; k < blockList.length && k < numLastBlocks && !foundBlockHeight; k++) {
 
-        // // The total score will only ever go below 5 (restarting condition), if for 8 minutes no new block was retrieved.
-        // // The other factors, eg. blocksMissed and blockDelays, will only determine the leader choice score.
-        //
-        const numLastBlocks               = 10
-        //
-        // cnjNode.score.blocksMissed        = 0
-        // cnjNode.score.blockDelays.length  = 0
-        //
-        // for(let i = 0, blockHeight = blockHeightMax; i < numLastBlocks; i++, blockHeight--) {
-        //
-        //   let foundBlockHeight = false
-        //
-        //   for(let k = 0; k < blockList.length && k < numLastBlocks && !foundBlockHeight; k++) {
-        //
-        //     foundBlockHeight = blockList[k].blockHeight === blockHeight
-        //   }
-        //
-        //   if(!foundBlockHeight) {
-        //
-        //     cnjNode.score.blocksMissed++
-        //   }
-        // }
-        //
+            foundBlockHeight = blockList[k].blockHeight === blockHeight
+          }
+
+          if(!foundBlockHeight) {
+
+            cnjNode.score.blocksMissed++
+          }
+        }
+
         for(let i = 0; i < blockList.length && i < numLastBlocks; i++) {
 
           cnjNode.score.blockDelays.push(
             Math.max(getDuration(blockList[i].receivedBlockTime, blockList[i].blockTime), 0))
         }
 
-        cnjNode.score.blocksDelay         = cnjNode.score.blockDelays.reduce((acc, cur) => acc + Math.min(cur, 5))
-        // cnjNode.score.timeSinceLastBlock  = getDuration(new Date() - blockList[0].receivedBlockTime)
-
+        cnjNode.score.blocksDelay         = cnjNode.score.blockDelays.reduce((acc, cur) => acc + Math.min(cur, maxPenaltyPerBlock))
+        cnjNode.score.timeSinceLastBlock  = getDuration(new Date() - blockList[0].receivedBlockTime)
         cnjNode.score.total               = Math.floor(100 -
-          (cnjNode.score.blocksMissed * 3) - // 34 * -3 = -102
-          cnjNode.score.blocksDelay)
-          // Math.max(cnjNode.score.timeSinceLastBlock - 430, 0)) // 430 + 5 * 10 = 480 = 8min
+          cnjNode.score.blocksMissed * maxPenaltyPerBlock-
+          cnjNode.score.blocksDelay -
+          Math.max(cnjNode.score.timeSinceLastBlock - 430, 0)) // 430 + 5 * 10 = 480 = 8min
 
         // TODO: Also take connections into account
         // TODO: save the cnjNode object as json file alongside the stats.json
@@ -174,7 +162,7 @@ const restartCNJNodeByScore = (force) => {
 
   for(let cnjNode of cnjNodeList) {
 
-    if(!cardanoNodeStarting && (force || cnjNode.score.total < 5)) {
+    if(force || cnjNode.score.total < 5) {
 
       setCNJNodeStarting(cnjNode)
       restartCardanoNode(cnjNode)
