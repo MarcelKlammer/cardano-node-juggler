@@ -12,6 +12,8 @@ const { cnjNodeList }                 = require('../CNJNode.js')
 
 const chooseAllCNJNodeLeaders = () => {
 
+  return // TODO: no promotion / demotion
+
   const highScoreCNJNode = getHighScoreCNJNode()
 
   for(let cnjNode of cnjNodeList) {
