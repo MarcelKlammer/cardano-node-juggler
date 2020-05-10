@@ -91,6 +91,8 @@ const getHighScoreCNJNode = () => {
 
   for(let cnjNode of cnjNodeList) {
 
+    if(!cnjNode.poolsecretJson) continue
+
     if(highScoreCNJNode === null || (cnjNode.score.total > highScoreCNJNode.score.total)) {
 
       highScoreCNJNode  = cnjNode

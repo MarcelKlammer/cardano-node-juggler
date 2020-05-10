@@ -31,7 +31,7 @@ const CNJNode = function(index, nodeConfig, appConfig) {
   this.epochTransitionRange = appConfig.epoch_transition_range
   this.nodeConfig         = nodeConfig
   this.genesisBlock       = appConfig.genesis_block
-  this.poolsecretJson     = appConfig.poolsecret_json
+  this.poolsecretJson     = index < appConfig.num_leader_nodes ? appConfig.poolsecret_json : null
   this.poolsecretYaml     = appConfig.poolsecret_yaml
   this.isLeader           = this.poolsecretYaml !== null
 

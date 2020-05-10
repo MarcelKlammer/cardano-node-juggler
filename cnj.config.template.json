@@ -4,6 +4,7 @@
   "poolsecret_json": "./poolsecret/poolsecret.json",
 
   "num_nodes": 2,
+  "num_leader_nodes": 2,
   "use_preferred_list":   true,
   "add_to_trusted_peers": true,
   "epoch_transition_range": [ -90.0, 30.0 ],
