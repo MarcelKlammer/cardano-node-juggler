@@ -12,7 +12,7 @@ const { cnjNodeList }                 = require('../CNJNode.js')
 
 const chooseAllCNJNodeLeaders = () => {
 
-  return // TODO: no promotion / demotion
+  // return // TODO: no promotion / demotion
 
   const highScoreCNJNode = getHighScoreCNJNode()
 
